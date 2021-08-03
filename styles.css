@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+*,
+*::after,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  background-color: #0d0c0d;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.above-the-fold {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: rgb(1, 0, 1);
+  padding: 0 5rem;
+}
+
+.container {
+  width: 80%;
+}
+.button-grid {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: -5rem;
+}
+
+a {
+  text-decoration: none;
+}
+/* button {
+  z-index: 4;
+} */
+
+.btn-buy,
+.btn-add,
+form button {
+  background-color: hsl(146, 68%, 55%);
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: hsl(228, 28%, 20%);
+  color: rgb(1, 0, 1);
+  border-radius: 5px;
+  padding: 2rem 4rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  display: flex;
+  justify-content: space-between;
+  transition: 2s all;
+  text-transform: uppercase;
+}
+.btn-buy:hover,
+.btn-add:hover,
+form button:hover {
+  background-image: linear-gradient(
+    to right,
+    hsl(146, 68%, 55%),
+    hsl(210, 78%, 56%)
+  );
+}
+
+div i {
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+
+.summary-grid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: hsl(228, 28%, 20%);
+  background-color: #0d0c0d;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  flex: 1;
+  margin-right: 3rem;
+  border-radius: 5px;
+  border-top: 0.7rem solid hsl(146, 68%, 55%);
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem;
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+.product-card:hover {
+  transform: scale(1.1);
+  transition: 0.5s all;
+}
+.product-card__code {
+  font-size: 1.4rem;
+}
+.product-card div {
+  display: flex;
+  width: 60%;
+  margin: 1.5rem;
+}
+.product-card i {
+  font-size: 4rem;
+  background: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-right: 3rem;
+}
+.form-grid {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rem 5rem;
+  position: relative;
+}
+#add_stock,
+#remove_stock {
+  flex: 1;
+}
+#add_stock {
+  margin-right: 10rem;
+}
+.form-heading {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: white;
+}
+form {
+  background-color: hsl(228, 28%, 20%);
+  background-color: rgb(1, 0, 1);
+
+  padding: 3rem;
+  padding-left: 6rem;
+  border-radius: 5px;
+  width: 100%;
+  flex: 1;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+label {
+  display: block;
+  margin: 1rem 0 1rem 0;
+  margin-top: 4rem;
+}
+input {
+  height: 4rem;
+  width: 80%;
+  background-color: hsl(230, 17%, 14%);
+  background-color: rgb(1, 0, 1);
+  border-radius: 5px;
+  border: 1px solid hsl(146, 68%, 55%);
+
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin-bottom: 4rem;
+  padding: 2rem;
+}
+select {
+  margin-bottom: 4rem;
+}
+
+form input::placeholder {
+  color: #fff;
+}
+
+form input:focus {
+  border: 1px solid hsl(146, 68%, 55%);
+}
+select {
+  width: 80%;
+  height: 4rem;
+  border: none;
+  border-radius: 5px;
+  background-color: hsl(230, 17%, 14%);
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+form button {
+  display: block;
+  border: none;
+  padding: 2rem 4rem;
+}
+.output-message-add {
+  margin-top: -1rem;
+  padding-bottom: 1rem;
+  visibility: hidden;
+  color: green;
+}
+.output-message-remove {
+  margin-top: -1rem;
+  padding-bottom: 1rem;
+  color: #e43e38;
+  visibility: hidden;
+}
+
+/* TABLET-ISH SIZE MEDIA QUERIES  */
+
+@media only screen and (max-width: 800px) {
+  body {
+    font-size: 1.2rem;
+  }
+  .above-the-fold {
+    padding: 0 2rem;
+  }
+  .form-grid {
+    flex-direction: column;
+    padding: 4rem 2rem;
+    align-items: center;
+  }
+
+  form {
+    margin-bottom: 4rem;
+  }
+
+  #add_stock {
+    margin-right: 0;
+  }
+  .container {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 655px) {
+  .above-the-fold {
+    height: auto;
+  }
+  .summary-grid {
+    padding: 4rem 0;
+  }
+  .button-grid {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+  .btn-add {
+    margin-right: 1rem;
+  }
+
+  .btn-add,
+  .btn-buy,
+  form button {
+    font-size: 1.2rem;
+    padding: 1.4rem 2rem;
+    text-align: center;
+  }
+  div i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+/* MOBILE-ISH SIZE MEDIA QUERIES  */
+@media only screen and (max-width: 477px) {
+  div i {
+    margin-right: 2px;
+  }
+  .product-card p {
+    font-size: 2rem;
+  }
+  .product-card__code {
+    font-size: 1.2rem;
+  }
+  .product-card div {
+    width: 100%;
+  }
+  .product-card i {
+    font-size: 3rem;
+  }
+  .btn-add,
+  .btn-buy {
+    font-size: 1.1rem;
+  }
+  div i {
+    font-size: 1.4rem;
+  }
+}

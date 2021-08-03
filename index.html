@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <title>Inventory</title>
+  </head>
+  <body>
+    <section class="above-the-fold">
+      <div class="summary-grid">
+        <div class="product-card">
+          <p class="product-card__code">PRODUCT1</p>
+          <div class="product-card__stock">
+            <i class="ph-stack-bold"></i>
+            <p id="product1_stock">40</p>
+          </div>
+          <div class="product-card__price">
+            <i class="ph-tag-bold"></i>
+            <p id="product1_price">R4000</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <p class="product-card__code">PRODUCT2</p>
+          <div class="product-card__stock">
+            <i class="ph-stack-bold"></i>
+            <p id="product2_stock">30</p>
+          </div>
+          <div class="product-card__price">
+            <i class="ph-money-bold"></i>
+            <p id="product2_price">R9000</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <p class="product-card__code">PRODUCT3</p>
+          <div class="product-card__stock">
+            <i class="ph-stack-bold"></i>
+            <p id="product3_stock">80</p>
+          </div>
+          <div class="product-card__price">
+            <i class="ph-money-bold"></i>
+            <p id="product3_price">R700</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="button-grid">
+          <a href="#add_stock">
+            <div class="btn-add">
+              <i class="ph-plus-circle"></i>
+              <p>Add Stock</p>
+            </div>
+          </a>
+
+          <a href="#remove-stock">
+            <div class="btn-buy">
+              <i class="ph-minus-circle"></i>
+              <p>Remove Stock</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-grid">
+      <!-- <img src="wave.svg" alt="wave svg" id="wave" /> -->
+      <section id="add_stock">
+        <form action="" id="form_addStock">
+          <p class="form-heading">Add Stock</p>
+          <label for="product-code">Select a Product Code:</label>
+          <select name="product-code" id="product-code-add">
+            <option value="product1">Product1</option>
+            <option value="product2">Product2</option>
+            <option value="product3">Product3</option>
+          </select>
+          <!-- <label for="items-received">Items Received</label> -->
+          <input type="text" id="items-received" placeholder="Items Received" />
+          <!-- <label for="item-price">Price per Item Received</label> -->
+          <input
+            type="text"
+            id="item-price"
+            placeholder="Price per Item Received"
+          />
+
+          <p class="output-message-add">ll</p>
+          <button id="add-stock">Add Stock</button>
+        </form>
+      </section>
+
+      <section id="remove_stock">
+        <form action="" id="form_removeStock">
+          <p class="form-heading">Remove Stock</p>
+          <label for="product-code">Select a Product Code:</label>
+          <select name="product-code" id="product-code-remove">
+            <option value="product1">Product1</option>
+            <option value="product2">Product2</option>
+            <option value="product3">Product3</option>
+          </select>
+          <!-- <label for="items-purchased">Items Purchased</label> -->
+          <input
+            type="text"
+            id="items-purchased"
+            placeholder="Items Purchased"
+          />
+          <!-- <label for="item-price">Buyer Email:</label> -->
+          <input type="email" id="buyer-email" placeholder="Buyer Email" />
+          <p class="output-message-remove">ll</p>
+          <button id="remove-stock">Remove Stock</button>
+        </form>
+      </section>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
