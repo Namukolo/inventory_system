@@ -1,60 +1,82 @@
 //DOM  ELEMENTS
-const product1Stock = document.querySelector("#product1_stock")!;
-const product1Price = document.querySelector("#product1_price")!;
+const product1Stock = document.querySelector(
+  "#product1_stock"
+) as HTMLParagraphElement;
+const product1Price = document.querySelector(
+  "#product1_price"
+) as HTMLParagraphElement;
 
-const product2Stock = document.querySelector("#product2_stock")!;
-const product2Price = document.querySelector("#product2_price")!;
+const product2Stock = document.querySelector(
+  "#product2_stock"
+) as HTMLParagraphElement;
+const product2Price = document.querySelector(
+  "#product2_price"
+) as HTMLParagraphElement;
 
-const product3Stock = document.querySelector("#product3_stock")!;
-const product3Price = document.querySelector("#product3_price")!;
+const product3Stock = document.querySelector(
+  "#product3_stock"
+) as HTMLParagraphElement;
+const product3Price = document.querySelector(
+  "#product3_price"
+) as HTMLParagraphElement;
 
-const btn_addStock = document.querySelector("#add-stock")!;
-const form_addStock = document.querySelector("#form_addStock") as HTMLFormElement;
-
-const btn_removeStock = document.querySelector("#remove-stock") as HTMLButtonElement;
-const form_removeStock = document.querySelector("#form_removeStock") as HTMLFormElement;
-
-//ADDITIONAL ELEMENTS
-
-const itemsReceived = document.querySelector("#items-received") as HTMLInputElement;
+//ADD_STOCK DOM ELEMENTS
+const itemsReceived = document.querySelector(
+  "#items-received"
+) as HTMLInputElement;
 const itemPrice = document.querySelector("#item-price") as HTMLInputElement;
-const productCode_add = document.querySelector("#product-code-add") as  HTMLSelectElement;
+const productCode_add = document.querySelector(
+  "#product-code-add"
+) as HTMLSelectElement;
+const btn_addStock = document.querySelector(
+  "#add-stock"
+) as HTMLParagraphElement;
+const form_addStock = document.querySelector(
+  "#form_addStock"
+) as HTMLFormElement;
 
-const itemsPurchased = document.querySelector("#items-purchased") as HTMLInputElement;
-const buyerEmail= document.querySelector("#buyer-email") as HTMLInputElement;
-const productCode_remove = document.querySelector( "#product-code-remove") as HTMLSelectElement;
-
+//REMOVE_STOCK DOM ELEMENTS
+const itemsPurchased = document.querySelector(
+  "#items-purchased"
+) as HTMLInputElement;
+const buyerEmail = document.querySelector("#buyer-email") as HTMLInputElement;
+const productCode_remove = document.querySelector(
+  "#product-code-remove"
+) as HTMLSelectElement;
+const btn_removeStock = document.querySelector(
+  "#remove-stock"
+) as HTMLButtonElement;
+const form_removeStock = document.querySelector(
+  "#form_removeStock"
+) as HTMLFormElement;
 
 //PRODUCT CLASS
 class Product {
-    code : number;
-    stock: number;
-    pricelist: number[];
+  constructor(
+    private code: number,
+    public stock: number,
+    private pricelist: number[]
+  ) {}
 
-  constructor(code: number, stock: number, pricelist: number[]) {
-    this.code = code;
-    this.stock = stock;
-    this.pricelist = pricelist;
-  }
   getPrice(): string {
     return (
       "" +
       (
-        this.pricelist.reduce((acc:number, currPrice:number) => acc + currPrice) /
-        this.pricelist.length
+        this.pricelist.reduce(
+          (acc: number, currPrice: number) => acc + currPrice
+        ) / this.pricelist.length
       ).toFixed(2)
     );
   }
 
-  addStock(numOfItems: number, price: number):void {
+  addStock(numOfItems: number, price: number): void {
     this.stock += numOfItems;
     this.pricelist.push(price);
     displayLevels();
   }
 
-  removeStock(numOfItems: number, buyerEmail: string) {
-      //TODO:: CHECK TO MAKE SURE CHANGE FROM INCLUDES TO INDEX OF WORKS CORRECTLY
-    if (buyersRecords.indexOf(buyerEmail) == -1 ) {
+  removeStock(numOfItems: number, buyerEmail: string): string {
+    if (buyersRecords.indexOf(buyerEmail) > -1) {
       return "Purchase unSuccessful";
     }
     if (this.stock - numOfItems < 0) {
@@ -68,18 +90,22 @@ class Product {
 }
 
 //HELPER FUNCTIONS
-function displayLevels() {
+function displayLevels(): void {
   product1Price.textContent = `R${product1.getPrice()}`;
-  product1Stock.textContent = ""+product1.stock;
+  product1Stock.textContent = "" + product1.stock;
 
   product2Price.textContent = `R${product2.getPrice()}`;
-  product2Stock.textContent = ""+product2.stock;
+  product2Stock.textContent = "" + product2.stock;
 
   product3Price.textContent = `R${product3.getPrice()}`;
-  product3Stock.textContent = ""+product3.stock;
+  product3Stock.textContent = "" + product3.stock;
 }
 
-function processResult(result: string, message:HTMLParagraphElement, btn_removeStock: HTMLButtonElement): void {
+function processResult(
+  result: string,
+  message: HTMLParagraphElement,
+  btn_removeStock: HTMLButtonElement
+): void {
   if (result === "Purchase unSuccessful") {
     message.style.visibility = "visible";
     message.textContent = "You have already purchased using this email";
@@ -101,8 +127,9 @@ form_addStock.addEventListener("submit", (e: Event) => {
   const numOfItems = +itemsReceived.value;
   const price = +itemPrice.value;
   const productCode = productCode_add.value;
-  const message = document.querySelector(".output-message-add") as HTMLParagraphElement;
-  console.log(numOfItems, price, productCode)
+  const message = document.querySelector(
+    ".output-message-add"
+  ) as HTMLParagraphElement;
 
   if (productCode == "product1") {
     product1.addStock(numOfItems, price);
@@ -120,14 +147,15 @@ form_addStock.addEventListener("submit", (e: Event) => {
   }, 2000);
 });
 
-
-
 form_removeStock.addEventListener("submit", (e: Event) => {
   e.preventDefault();
-  const numOfItems = itemsPurchased.valueAsNumber;
+  const numOfItems = +itemsPurchased.value;
   const email = buyerEmail.value;
   const productCode = productCode_remove.value;
-  const message = document.querySelector(".output-message-remove") as HTMLParagraphElement;
+  const message = document.querySelector(
+    ".output-message-remove"
+  ) as HTMLParagraphElement;
+  console.log(numOfItems, email, productCode);
 
   //PRODUCT ONE
   if (productCode == "product1") {
