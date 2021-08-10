@@ -9,10 +9,21 @@ const product3Stock = document.querySelector("#product3_stock")!;
 const product3Price = document.querySelector("#product3_price")!;
 
 const btn_addStock = document.querySelector("#add-stock")!;
-const form_addStock = document.querySelector("#form_addStock")!;
+const form_addStock = document.querySelector("#form_addStock") as HTMLFormElement;
 
-const btn_removeStock = document.querySelector("#remove-stock")!;
-const form_removeStock = document.querySelector("#form_removeStock")!;
+const btn_removeStock = document.querySelector("#remove-stock") as HTMLButtonElement;
+const form_removeStock = document.querySelector("#form_removeStock") as HTMLFormElement;
+
+//ADDITIONAL ELEMENTS
+
+const itemsReceived = document.querySelector("#items-received") as HTMLInputElement;
+const itemPrice = document.querySelector("#item-price") as HTMLInputElement;
+const productCode_add = document.querySelector("#product-code-add") as  HTMLSelectElement;
+
+const itemsPurchased = document.querySelector("#items-purchased") as HTMLInputElement;
+const buyerEmail= document.querySelector("#buyer-email") as HTMLInputElement;
+const productCode_remove = document.querySelector( "#product-code-remove") as HTMLSelectElement;
+
 
 //PRODUCT CLASS
 class Product {
@@ -85,18 +96,18 @@ function processResult(result: string, message:HTMLParagraphElement, btn_removeS
 }
 
 // EVENT LISTENERS
-btn_addStock.addEventListener("click", (e) => {
+form_addStock.addEventListener("submit", (e: Event) => {
   e.preventDefault();
-  const numOfItems = +document.querySelector("#items-received").value;
-  const price = +document.querySelector("#item-price").value;
-  const productCode_add = document.querySelector("#product-code-add").value;
-  const message = document.querySelector(".output-message-add");
+  const numOfItems = itemsReceived.valueAsNumber;
+  const price = itemPrice.valueAsNumber;
+  const productCode = productCode_add.value;
+  const message = document.querySelector(".output-message-add") as HTMLParagraphElement;
 
-  if (productCode_add == "product1") {
+  if (productCode == "product1") {
     product1.addStock(numOfItems, price);
-  } else if (productCode_add == "product2") {
+  } else if (productCode == "product2") {
     product2.addStock(numOfItems, price);
-  } else if (productCode_add == "product3") {
+  } else if (productCode == "product3") {
     product3.addStock(numOfItems, price);
   }
 
@@ -108,28 +119,28 @@ btn_addStock.addEventListener("click", (e) => {
   }, 2000);
 });
 
-btn_removeStock.addEventListener("click", (e) => {
+
+
+form_removeStock.addEventListener("submit", (e: Event) => {
   e.preventDefault();
-  const numOfItems = +document.querySelector("#items-purchased").value;
-  const buyerEmail = document.querySelector("#buyer-email").value;
-  const productCode_remove = document.querySelector(
-    "#product-code-remove"
-  ).value;
-  const message = document.querySelector(".output-message-remove");
+  const numOfItems = itemsPurchased.valueAsNumber;
+  const email = buyerEmail.value;
+  const productCode = productCode_remove.value;
+  const message = document.querySelector(".output-message-remove") as HTMLParagraphElement;
 
   //PRODUCT ONE
-  if (productCode_remove == "product1") {
-    const result = product1.removeStock(numOfItems, buyerEmail);
+  if (productCode == "product1") {
+    const result = product1.removeStock(numOfItems, email);
     processResult(result, message, btn_removeStock);
 
     //PRODUCT TWO
-  } else if (productCode_remove == "product2") {
-    const result = product2.removeStock(numOfItems, buyerEmail);
+  } else if (productCode == "product2") {
+    const result = product2.removeStock(numOfItems, email);
     processResult(result, message, btn_removeStock);
 
     //PRODUCT THREE
-  } else if (productCode_remove == "product3") {
-    const result = product3.removeStock(numOfItems, buyerEmail);
+  } else if (productCode == "product3") {
+    const result = product3.removeStock(numOfItems, email);
     processResult(result, message, btn_removeStock);
   }
 
