@@ -50,11 +50,11 @@ var Product = /** @class */ (function () {
 //HELPER FUNCTIONS
 function displayLevels() {
     product1Price.textContent = "R" + product1.getPrice();
-    product1Stock.textContent = product1.stock;
+    product1Stock.textContent = "" + product1.stock;
     product2Price.textContent = "R" + product2.getPrice();
-    product2Stock.textContent = product2.stock;
+    product2Stock.textContent = "" + product2.stock;
     product3Price.textContent = "R" + product3.getPrice();
-    product3Stock.textContent = product3.stock;
+    product3Stock.textContent = "" + product3.stock;
 }
 function processResult(result, message, btn_removeStock) {
     if (result === "Purchase unSuccessful") {

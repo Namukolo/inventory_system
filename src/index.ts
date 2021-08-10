@@ -1,18 +1,18 @@
 //DOM  ELEMENTS
-const product1Stock = document.querySelector("#product1_stock");
-const product1Price = document.querySelector("#product1_price");
+const product1Stock = document.querySelector("#product1_stock")!;
+const product1Price = document.querySelector("#product1_price")!;
 
-const product2Stock = document.querySelector("#product2_stock");
-const product2Price = document.querySelector("#product2_price");
+const product2Stock = document.querySelector("#product2_stock")!;
+const product2Price = document.querySelector("#product2_price")!;
 
-const product3Stock = document.querySelector("#product3_stock");
-const product3Price = document.querySelector("#product3_price");
+const product3Stock = document.querySelector("#product3_stock")!;
+const product3Price = document.querySelector("#product3_price")!;
 
-const btn_addStock = document.querySelector("#add-stock");
-const form_addStock = document.querySelector("#form_addStock");
+const btn_addStock = document.querySelector("#add-stock")!;
+const form_addStock = document.querySelector("#form_addStock")!;
 
-const btn_removeStock = document.querySelector("#remove-stock");
-const form_removeStock = document.querySelector("#form_removeStock");
+const btn_removeStock = document.querySelector("#remove-stock")!;
+const form_removeStock = document.querySelector("#form_removeStock")!;
 
 //PRODUCT CLASS
 class Product {
@@ -59,13 +59,13 @@ class Product {
 //HELPER FUNCTIONS
 function displayLevels() {
   product1Price.textContent = `R${product1.getPrice()}`;
-  product1Stock.textContent = product1.stock;
+  product1Stock.textContent = ""+product1.stock;
 
   product2Price.textContent = `R${product2.getPrice()}`;
-  product2Stock.textContent = product2.stock;
+  product2Stock.textContent = ""+product2.stock;
 
   product3Price.textContent = `R${product3.getPrice()}`;
-  product3Stock.textContent = product3.stock;
+  product3Stock.textContent = ""+product3.stock;
 }
 
 function processResult(result, message, btn_removeStock) {
