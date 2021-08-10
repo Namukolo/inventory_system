@@ -68,7 +68,7 @@ function displayLevels() {
   product3Stock.textContent = ""+product3.stock;
 }
 
-function processResult(result, message, btn_removeStock) {
+function processResult(result: string, message:HTMLParagraphElement, btn_removeStock: HTMLButtonElement): void {
   if (result === "Purchase unSuccessful") {
     message.style.visibility = "visible";
     message.textContent = "You have already purchased using this email";
