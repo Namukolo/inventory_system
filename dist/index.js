@@ -76,10 +76,11 @@ function processResult(result, message, btn_removeStock) {
 // EVENT LISTENERS
 form_addStock.addEventListener("submit", (e) => {
     e.preventDefault();
-    const numOfItems = itemsReceived.valueAsNumber;
-    const price = itemPrice.valueAsNumber;
+    const numOfItems = +itemsReceived.value;
+    const price = +itemPrice.value;
     const productCode = productCode_add.value;
     const message = document.querySelector(".output-message-add");
+    console.log(numOfItems, price, productCode);
     if (productCode == "product1") {
         product1.addStock(numOfItems, price);
     }
