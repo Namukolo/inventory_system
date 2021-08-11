@@ -6,17 +6,18 @@ const product2Stock = document.querySelector("#product2_stock");
 const product2Price = document.querySelector("#product2_price");
 const product3Stock = document.querySelector("#product3_stock");
 const product3Price = document.querySelector("#product3_price");
-const btn_addStock = document.querySelector("#add-stock");
-const form_addStock = document.querySelector("#form_addStock");
-const btn_removeStock = document.querySelector("#remove-stock");
-const form_removeStock = document.querySelector("#form_removeStock");
-//ADDITIONAL ELEMENTS
+//ADD_STOCK DOM ELEMENTS
 const itemsReceived = document.querySelector("#items-received");
 const itemPrice = document.querySelector("#item-price");
 const productCode_add = document.querySelector("#product-code-add");
+const btn_addStock = document.querySelector("#add-stock");
+const form_addStock = document.querySelector("#form_addStock");
+//REMOVE_STOCK DOM ELEMENTS
 const itemsPurchased = document.querySelector("#items-purchased");
 const buyerEmail = document.querySelector("#buyer-email");
 const productCode_remove = document.querySelector("#product-code-remove");
+const btn_removeStock = document.querySelector("#remove-stock");
+const form_removeStock = document.querySelector("#form_removeStock");
 //PRODUCT CLASS
 class Product {
     constructor(code, stock, pricelist) {
@@ -26,8 +27,7 @@ class Product {
     }
     getPrice() {
         return ("" +
-            (this.pricelist.reduce((acc, currPrice) => acc + currPrice) /
-                this.pricelist.length).toFixed(2));
+            (this.pricelist.reduce((acc, currPrice) => acc + currPrice) / this.pricelist.length).toFixed(2));
     }
     addStock(numOfItems, price) {
         this.stock += numOfItems;
@@ -35,8 +35,7 @@ class Product {
         displayLevels();
     }
     removeStock(numOfItems, buyerEmail) {
-        //TODO:: CHECK TO MAKE SURE CHANGE FROM INCLUDES TO INDEX OF WORKS CORRECTLY
-        if (buyersRecords.indexOf(buyerEmail) == -1) {
+        if (buyersRecords.indexOf(buyerEmail) > -1) {
             return "Purchase unSuccessful";
         }
         if (this.stock - numOfItems < 0) {
@@ -80,7 +79,6 @@ form_addStock.addEventListener("submit", (e) => {
     const price = +itemPrice.value;
     const productCode = productCode_add.value;
     const message = document.querySelector(".output-message-add");
-    console.log(numOfItems, price, productCode);
     if (productCode == "product1") {
         product1.addStock(numOfItems, price);
     }
@@ -99,10 +97,11 @@ form_addStock.addEventListener("submit", (e) => {
 });
 form_removeStock.addEventListener("submit", (e) => {
     e.preventDefault();
-    const numOfItems = itemsPurchased.valueAsNumber;
+    const numOfItems = +itemsPurchased.value;
     const email = buyerEmail.value;
     const productCode = productCode_remove.value;
     const message = document.querySelector(".output-message-remove");
+    console.log(numOfItems, email, productCode);
     //PRODUCT ONE
     if (productCode == "product1") {
         const result = product1.removeStock(numOfItems, email);
